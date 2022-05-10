@@ -94,6 +94,7 @@ set(IMGUI_SRC
     3rdparty/imgui/imgui_widgets.cpp
     3rdparty/imgui/imgui.cpp
     3rdparty/imgui/imgui_stdlib.cpp
+	3rdparty/imgui/imgui_tables.cpp
     3rdparty/imgui/backends/imgui_impl_glfw.cpp
     3rdparty/imgui/backends/imgui_impl_glfw.h
     3rdparty/imgui/backends/imgui_impl_opengl3.cpp
