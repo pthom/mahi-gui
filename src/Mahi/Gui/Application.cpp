@@ -171,7 +171,6 @@ Application::Application(const Config &conf) :
     m_implot_context = ImPlot::CreateContext();
     if (!m_implot_context)
         throw std::runtime_error("Failed to create ImPlot context!");
-    ImPlot::SetColormap(ImPlotColormap_Deep);
 }
 
 Application::Application() :
@@ -225,7 +224,9 @@ void Application::render_imgui() {
     prof_clk.restart();
     m_dt = dt_clk.restart() * m_time_scale;
     m_time += m_dt;
+    ImPlot::PushColormap(ImPlotColormap_Deep); // Set default Colormap (which the user can later override)
     update();
+    ImPlot::PopColormap();
     prof.t_update = prof_clk.restart();
 
 #ifdef MAHI_COROUTINES
@@ -270,6 +271,7 @@ void Application::render_imgui() {
     draw(m_vg);
     nvgEndFrame(m_vg);
     prof.t_nvg = prof_clk.restart();
+
 
     // Render ImGui
 

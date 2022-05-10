@@ -31,8 +31,8 @@ void Plotter::update() {
 
     auto plot_data = m_paused ? m_paused_data : m_scrolling_data;
 
-    ImPlot::SetNextPlotLimitsX(t - 10, t, m_paused ? ImGuiCond_Once : ImGuiCond_Always);
-    ImPlot::SetNextPlotLimitsY(-2,2);
+    ImPlot::SetNextAxisLimits(ImAxis_X1, t - 10, t, m_paused ? ImGuiCond_Once : ImGuiCond_Always);
+    ImPlot::SetNextAxisLimits(ImAxis_Y1, -2, 2);
     if(ImPlot::BeginPlot("##Torque Plot", "Time (s)", "Data", {-1,-1}, 0, 0, 0)){
         for (const auto &data : plot_data){
             ImPlot::PlotLine((data.first).c_str(), &data.second.Data[0].x, &data.second.Data[0].y, data.second.Data.size(), data.second.Offset, 2 * sizeof(float));
